@@ -1,0 +1,12 @@
+{
+  "name": "daemonic",
+  "description": "A dead-simple module to daemonize node",
+  "author": "Christopher Jeffrey",
+  "version": "0.0.1",
+  "main": "./index.js",
+  "repository": "git://github.com/chjj/daemonic.git",
+  "homepage": "https://github.com/chjj/daemonic",
+  "bugs": { "url": "https://github.com/chjj/daemonic/issues" },
+  "keywords": [ "daemon", "fork" ],
+  "tags": [ "daemon", "fork" ]
+}
