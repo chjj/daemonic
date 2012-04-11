@@ -28,7 +28,7 @@ var daemonic = require('daemonic')({
 });
 
 setInterval(function() {
-  if (daemonic.daemon) {
+  if (daemonic.isDaemon) {
     console.log('My app is now daemonized. You won\'t see this message.');
   } else {
     console.log(
@@ -39,14 +39,17 @@ setInterval(function() {
 ```
 
 ``` js
-// Daemonize a specified process.
+// Fork a new daemonized process.
 // Does not kill (grand)parent.
-require('daemonic')({
-  process: ['node', './myotherapp.js'],
+var fork = require('daemonic').fork;
+var ps = fork('node', ['./app.js'], {
   umask: true,
-  cd: true
-}, function(err, pid) {
-  console.log('Daemonized: ' + pid);
+  cwd: '/',
+  customFds: [0, 1, 2],
+  env: process.env
+});
+ps.on('open', function(pid) {
+  console.log('Forked a new process: ' + pid);
 });
 ```
 
