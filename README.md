@@ -28,7 +28,7 @@ var daemonic = require('daemonic')({
 });
 
 setInterval(function() {
-  if (daemonic.daemon) {
+  if (process.daemon) {
     console.log('My app is now daemonized. You won\'t see this message.');
   } else {
     console.log(
