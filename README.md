@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/chjj/daemonic.png)](http://travis-ci.org/chjj/daemonic)
 # Daemonic
 
 A dead-simple module to daemonize your node process. No compilation required.
