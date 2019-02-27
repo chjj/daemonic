@@ -1,12 +1,24 @@
 {
   "name": "daemonic",
-  "description": "A dead-simple module to daemonize node",
-  "author": "Christopher Jeffrey",
   "version": "0.0.2",
-  "main": "./index.js",
+  "description": "Daemonizer for node.js",
+  "keywords": [
+    "daemon",
+    "fork"
+  ],
+  "license": "MIT",
   "repository": "git://github.com/chjj/daemonic.git",
   "homepage": "https://github.com/chjj/daemonic",
-  "bugs": { "url": "https://github.com/chjj/daemonic/issues" },
-  "keywords": [ "daemon", "fork" ],
-  "tags": [ "daemon", "fork" ]
+  "bugs": {
+    "url": "https://github.com/chjj/daemonic/issues"
+  },
+  "author": "Christopher Jeffrey <chjjeffrey@gmail.com>",
+  "main": "./lib/daemonic.js",
+  "scripts": {
+    "lint": "eslint lib/ || exit 0",
+    "test": "bmocha --reporter spec test/*-test.js"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  }
 }

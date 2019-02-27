@@ -1,58 +1,37 @@
-# Daemonic
+# daemonic
 
-A dead-simple module to daemonize your node process. No compilation required.
+Daemonizer for node.js.
 
 ## Usage
 
 ``` js
-// Daemonize current process.
+// Daemonize process based on args.
 require('daemonic')({
-  umask: true,  // umask(0);
-  cd: true      // chdir("/");
+  daemon: ['-d', '--daemonic']
 });
 
-setInterval(function() {
-  console.log('My app is now daemonized. You won\'t see this message.');
-}, 2000);
-```
-
-``` js
-// Daemonize current process, depending
-// on whether certain options are present.
-// Start with: $ myapp --daemonize
-
-var daemonic = require('daemonic')({
-  options: ['--daemonize', '--production'],
-  umask: true,
-  cd: true
+// Daemonize process based on args (with extra node flags).
+// Will exec new process to load node flags otherwise.
+require('daemonic')({
+  flags: ['--experimental-worker'],
+  daemon: ['-d', '--daemonic']
 });
 
-setInterval(function() {
-  if (process.daemon) {
-    console.log('My app is now daemonized. You won\'t see this message.');
-  } else {
-    console.log(
-      'My app didn\'t want to be daemonized.',
-      'You will see this message.');
-  }
-}, 2000);
-```
-
-``` js
-// Fork a new daemonized process.
-// Does not kill (grand)parent.
-var fork = require('daemonic').fork;
-var ps = fork('node', ['./app.js'], {
-  umask: true,
-  cwd: '/',
-  customFds: [0, 1, 2],
-  env: process.env
-});
-ps.on('open', function(pid) {
-  console.log('Forked a new process: ' + pid);
+// Always daemonize process (with extra node flags).
+require('daemonic')({
+  flags: ['--experimental-worker'],
+  daemon: true
 });
 ```
+
+## Contribution and License Agreement
+
+If you contribute code to this project, you are implicitly allowing your code
+to be distributed under the MIT license. You are also implicitly verifying that
+all code is your original work. `</legalese>`
 
 ## License
 
-Copyright (c) 2012, Christopher Jeffrey (MIT License).
+- Copyright (c) 2012-2019, Christopher Jeffrey (MIT License).
+
+See LICENSE for more info.
